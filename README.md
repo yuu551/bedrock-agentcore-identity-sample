@@ -141,42 +141,6 @@ curl -X POST "https://bedrock-agentcore.us-west-2.amazonaws.com/runtimes/[ENCODE
 ├── execution-policy.json         # IAM実行ポリシー
 └── blog.md                       # 詳細な技術解説
 ```
-
-## 利用可能なツール
-
-このエージェントは以下のツールを提供します：
-
-- **calculator**: 数学計算機能
-- **weather**: 天気情報の取得
-
-## トラブルシューティング
-
-### よくある問題
-
-1. **デプロイエラー**: IAMロールの権限が不足している可能性があります
-2. **認証エラー**: Cognitoの設定やトークンの有効期限を確認してください
-3. **Azure OpenAIエラー**: APIキーやエンドポイントの設定を確認してください
-
-### ログ確認
-
-CloudWatchでエージェントのログを確認できます：
-
-```
-/aws/bedrock-agentcore/runtimes/[エージェント名]
-```
-
 ## 注意事項
 
 - 本番環境では最小権限の原則に従ってIAM権限を設定してください
-- アカウントIDなどの機密情報は適切にマスクまたは環境変数化してください
-- AgentCoreは現在us-west-2リージョンでのみ利用可能です
-
-## 関連リンク
-
-- [Amazon Bedrock AgentCore 公式ドキュメント](https://docs.aws.amazon.com/bedrock-agentcore/)
-- [Strands エージェントフレームワーク](https://github.com/anthropics/strands)
-- [Azure OpenAI Service](https://azure.microsoft.com/ja-jp/products/ai-services/openai-service)
-
-## ライセンス
-
-このプロジェクトはサンプル実装であり、学習・検証目的での使用を想定しています。
