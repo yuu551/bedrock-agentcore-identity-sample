@@ -1,0 +1,110 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "ECRImageAccess",
+            "Effect": "Allow",
+            "Action": [
+                "ecr:BatchGetImage",
+                "ecr:GetDownloadUrlForLayer"
+            ],
+            "Resource": [
+                "arn:aws:ecr:us-west-2:123456789012:repository/*"
+            ]
+        },
+        {
+            "Sid": "ECRTokenAccess",
+            "Effect": "Allow",
+            "Action": [
+                "ecr:GetAuthorizationToken"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "LogsAccess",
+            "Effect": "Allow",
+            "Action": [
+                "logs:DescribeLogStreams",
+                "logs:CreateLogGroup",
+                "logs:DescribeLogGroups",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:logs:us-west-2:123456789012:log-group:/aws/bedrock-agentcore/runtimes/*",
+                "arn:aws:logs:us-west-2:123456789012:log-group:/aws/bedrock-agentcore/runtimes/*:log-stream:*",
+                "arn:aws:logs:us-west-2:123456789012:log-group:*"
+            ]
+        },
+        {
+            "Sid": "XRayAccess",
+            "Effect": "Allow",
+            "Action": [
+                "xray:PutTraceSegments",
+                "xray:PutTelemetryRecords",
+                "xray:GetSamplingRules",
+                "xray:GetSamplingTargets"
+            ],
+            "Resource": ["*"]
+        },
+        {
+            "Sid": "CloudWatchMetrics",
+            "Effect": "Allow",
+            "Resource": "*",
+            "Action": "cloudwatch:PutMetricData",
+            "Condition": {
+                "StringEquals": {
+                    "cloudwatch:namespace": "bedrock-agentcore"
+                }
+            }
+        },
+        {
+            "Sid": "GetAgentAccessToken",
+            "Effect": "Allow",
+            "Action": [
+                "bedrock-agentcore:GetWorkloadAccessToken",
+                "bedrock-agentcore:GetWorkloadAccessTokenForJWT",
+                "bedrock-agentcore:GetWorkloadAccessTokenForUserId"
+            ],
+            "Resource": [
+                "arn:aws:bedrock-agentcore:us-west-2:123456789012:workload-identity-directory/default",
+                "arn:aws:bedrock-agentcore:us-west-2:123456789012:workload-identity-directory/default/workload-identity/*"
+            ]
+        },
+        {
+            "Sid": "BedrockModelInvocation",
+            "Effect": "Allow",
+            "Action": [
+                "bedrock:InvokeModel",
+                "bedrock:InvokeModelWithResponseStream"
+            ],
+            "Resource": [
+                "arn:aws:bedrock:*::foundation-model/*",
+                "arn:aws:bedrock:us-west-2:123456789012:*"
+            ]
+        },
+        {
+            "Sid": "CredentialProviderAccess",
+            "Effect": "Allow",
+            "Action": [
+                "bedrock-agentcore:GetApiKeyCredentialProvider",
+                "bedrock-agentcore:GetOauth2CredentialProvider",
+                "bedrock-agentcore:CreateApiKeyCredentialProvider",
+                "bedrock-agentcore:CreateOauth2CredentialProvider",
+                "bedrock-agentcore:GetResourceApiKey"
+            ],
+            "Resource": [
+                "arn:aws:bedrock-agentcore:us-west-2:123456789012:workload-identity-directory/*",
+                "arn:aws:bedrock-agentcore:us-west-2:123456789012:token-vault/*"
+            ]
+        },
+        {
+            "Sid": "SecretsManagerAccess",
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:GetSecretValue"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
