@@ -1,4 +1,4 @@
-# Amazon Bedrock AgentCore Identity ハンズオン
+# Amazon Bedrock AgentCore Identity サンプルコード
 
 Amazon Bedrock AgentCore IdentityでCognito認証とAzure OpenAI連携を同時に実現するセキュアなエージェントのサンプル実装です。
 
@@ -139,7 +139,6 @@ curl -X POST "https://bedrock-agentcore.us-west-2.amazonaws.com/runtimes/[ENCODE
 ├── create_iam_role.sh            # IAMロール作成
 ├── trust-policy.json             # IAMトラストポリシー
 ├── execution-policy.json         # IAM実行ポリシー
-└── blog.md                       # 詳細な技術解説
 ```
 ## 注意事項
 
